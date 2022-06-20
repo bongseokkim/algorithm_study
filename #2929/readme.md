@@ -3,7 +3,7 @@
 + 예제 케이스만 생각하면 안된다. 예외 case를 생각해보자
 
 ## failed 
-
++ 어떤 예외 case에 안되는걸까?
 ```python
 def machine_code(input_ls):
     num_nop = 0 
