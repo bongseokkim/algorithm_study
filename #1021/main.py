@@ -1,12 +1,10 @@
-
-
 import queue
-from xml.etree.ElementTree import Element
+
 
 
 class myqeue(object):
-    def __init__(self) :
-        self.data = list(range(10))
+    def __init__(self, num) :
+        self.data = list(range(1,num+1))
 
     def pop(self):
         element = self.data[0]
@@ -32,40 +30,33 @@ class myqeue(object):
 
 def find_lowest_num(queue,idx):
     ## 현재 queue의 idx라고 가정 
-    n = queue.len_qeue()
     cnt = 0 
-    middle_point = int(n/2)
+    n = queue.len_qeue()
+    middle = int(n/2)
 
-    if n%2 == 0 :
-        if idx < middle_point :
-            for i in range(idx+1):
-                queue.pop()
-                cnt+=1 
-    
-
-    if idx < middle_point and n %2==0 : 
+    if idx <= middle : 
         for i in range(idx):
             queue.move_left()
             cnt+=1
-    else :
-        for i in range(n-idx):
+
+    else : 
+        for j in range(n-idx):
             queue.move_right()
-            cnt+=1
-    
+            cnt+=1 
     queue.pop()
-    return queue.data, cnt 
+    return queue, cnt 
 
 def main():
-    queue = myqeue()
-    print(f'que :{queue.data}')
-    que, num = find_lowest_num(queue ,6)
-    print(f'que :{que}, num:{num}')
-    # length, num = input().split()
-    # required_idx_lst = input().split()
+    count = 0 
+    length, num = input().split()
+    required_idx_lst = input().split()
+    my_que = myqeue(int(length))
+    for i in (required_idx_lst):
+        idx = my_que.data.index(int(i))
+        queue, cnt = find_lowest_num(my_que, idx)
+        count+=cnt 
+        my_que = queue
+    print(count)
 
-
-
-
-
-if __name__ == "__main__" :
+if __name__ =="__main__":
     main()
